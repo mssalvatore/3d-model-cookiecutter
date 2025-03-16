@@ -10,7 +10,7 @@
 
     "__year": "{% now 'utc', '%Y' %}",
     "license": ["GPLv3", "MIT", "Apache", null],
-    "versioning_scheme": ["semver", "PEP440"],
+    "versioning_scheme": ["CalVer", "SemVer", "PEP440"],
 
     "project_short_description": "Sample Description",
     "python_major_version": 3,
