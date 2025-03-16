@@ -1,0 +1,56 @@
+default_stages: [commit]
+default_language_version:
+  python: python{{ cookiecutter.python_major_version }}.{{ cookiecutter.python_minor_version }}
+
+repos:
+  - repo: https://github.com/psf/black
+    rev: {{ cookiecutter._black_version }}
+    hooks:
+      - id: black
+  - repo: https://github.com/PyCQA/flake8
+    rev: {{ cookiecutter._flake8_version }}
+    hooks:
+      - id: flake8
+        additional_dependencies: [dlint=={{ cookiecutter._dlint_version }}]
+  - repo: https://github.com/pycqa/isort
+    rev: {{ cookiecutter._isort_version }}
+    hooks:
+      - id: isort
+        name: isort (python)
+      - id: isort
+        name: isort (cython)
+        types: [cython]
+      - id: isort
+        name: isort (pyi)
+        types: [pyi]
+  - repo: https://github.com/mssalvatore/merge-issue-number-hook
+    rev: v1.0.0
+    hooks:
+      - id: merge-issue-number
+  - repo: https://github.com/pre-commit/mirrors-mypy
+    rev: v{{ cookiecutter._mypy_version }}
+    hooks:
+      - id: mypy
+        additional_dependencies: []
+        exclude: "vulture_allowlist.py"
+        args: [--ignore-missing-imports, --check-untyped-defs]
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.4.0
+    hooks:
+      - id: check-added-large-files
+      - id: check-case-conflict
+      - id: check-json
+      - id: check-merge-conflict
+      - id: detect-private-key
+      - id: end-of-file-fixer
+      - id: trailing-whitespace
+{%- if cookiecutter.hook_shellcheck == "y" %}
+  - repo: https://github.com/koalaman/shellcheck-precommit
+    rev: v0.9.0
+    hooks:
+    -   id: shellcheck
+{%- endif %}
+  - repo: https://github.com/jendrikseipp/vulture
+    rev: v{{ cookiecutter._vulture_version }}
+    hooks:
+      - id: vulture
