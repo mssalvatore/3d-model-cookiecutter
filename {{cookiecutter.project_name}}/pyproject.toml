@@ -10,7 +10,7 @@ classifiers=[
 {%- endif %}
     "Programming Language :: Python :: {{ cookiecutter.python_major_version }}.{{ cookiecutter.python_minor_version }}"
 ]
-dependencies = ["build123d (>=0.9.1, <1.0)"]
+dependencies = ["build123d (>=0.9.1, <1.0)", "ocp-vscode"]
 description = "{{ cookiecutter.project_short_description }}"
 dynamic = ["readme"]
 {%- if cookiecutter.license is not none %}
