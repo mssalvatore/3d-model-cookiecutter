@@ -1,7 +1,7 @@
 import argparse
 from pathlib import Path
 
-from build123d import *
+from build123d import *  # noqa: F403
 from ocp_vscode import (  # noqa: F401
     get_defaults,
     reset_show,
